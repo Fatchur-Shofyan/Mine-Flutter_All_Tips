@@ -7,6 +7,7 @@ import 'package:learn/dialog/awesome_dialog.dart';
 import 'package:learn/dialog/material_dialog.dart';
 import 'package:learn/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:learn/list/main.dart';
+import 'package:learn/loading_indicator/main.dart';
 import 'package:learn/location/geolocator.dart';
 import 'package:learn/location/geolocator2.dart';
 import 'package:learn/progress_timeline/main.dart';
@@ -128,6 +129,10 @@ class _MyHomePageState extends State<MyHomePage> {
             BuildButton(
               text: 'Connectivity',
               onPressed: const ConnectivityPage(),
+            ),
+            BuildButton(
+              text: 'Loading Indicator',
+              onPressed: const LoadingIndicatorPage(),
             )
           ],
         ),
