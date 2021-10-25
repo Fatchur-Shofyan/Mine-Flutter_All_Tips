@@ -9,6 +9,8 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:learn/calendar/utils.dart';
 
 class TableMultiExample extends StatefulWidget {
+  const TableMultiExample({Key? key}) : super(key: key);
+
   @override
   _TableMultiExampleState createState() => _TableMultiExampleState();
 }
@@ -62,7 +64,7 @@ class _TableMultiExampleState extends State<TableMultiExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TableCalendar - Multi'),
+        title: const Text('TableCalendar - Multi'),
       ),
       body: Column(
         children: [
@@ -90,7 +92,7 @@ class _TableMultiExampleState extends State<TableMultiExample> {
             },
           ),
           ElevatedButton(
-            child: Text('Clear selection'),
+            child: const Text('Clear selection'),
             onPressed: () {
               setState(() {
                 _selectedDays.clear();
@@ -116,7 +118,7 @@ class _TableMultiExampleState extends State<TableMultiExample> {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       child: ListTile(
-                        onTap: () => print('${value[index]}'),
+                        onTap: () => debugPrint('${value[index]}'),
                         title: Text('${value[index]}'),
                       ),
                     );

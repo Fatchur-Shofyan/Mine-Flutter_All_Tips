@@ -2,13 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import 'package:flutter/material.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
-import 'package:learn/calendar/basic.dart';
-import 'package:learn/calendar/complex.dart';
-import 'package:learn/calendar/event.dart';
-import 'package:learn/calendar/multi.dart';
-import 'package:learn/calendar/range.dart';
 import 'package:learn/list/fade_list.dart';
 import 'package:learn/list/infinite_scroll.dart';
 import 'package:learn/list/infinite_scroll_fade.dart';

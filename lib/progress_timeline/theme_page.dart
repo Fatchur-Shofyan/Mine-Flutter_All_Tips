@@ -5,6 +5,8 @@ import 'package:timelines/timelines.dart';
 import 'widget.dart';
 
 class ThemePage extends StatefulWidget {
+  const ThemePage({Key? key}) : super(key: key);
+
   @override
   _ThemePageState createState() => _ThemePageState();
 }
@@ -42,21 +44,21 @@ class _ThemePageState extends State<ThemePage> {
       body: Stack(
         children: [
           ListView(
-            padding: EdgeInsets.fromLTRB(20.0, 160.0, 20.0, 40.0),
+            padding: const EdgeInsets.fromLTRB(20.0, 160.0, 20.0, 40.0),
             children: [
               Card(
                 child: Container(
-                  padding: EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Row(
                     children: [
-                      Text('contents: '),
+                      const Text('contents: '),
                       Container(
                         width: 10.0,
                         height: 10.0,
                         color: Colors.teal,
                       ),
-                      SizedBox(width: 10.0),
-                      Text('opposite contents: '),
+                      const SizedBox(width: 10.0),
+                      const Text('opposite contents: '),
                       Container(
                         width: 10.0,
                         height: 10.0,
@@ -66,10 +68,10 @@ class _ThemePageState extends State<ThemePage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               Card(
                 child: Container(
-                  padding: EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: [
                       Text(
@@ -78,7 +80,7 @@ class _ThemePageState extends State<ThemePage> {
                       ),
                       _ThemeDropdown(
                         title: 'Direction',
-                        items: {
+                        items: const {
                           'Vertical': Axis.vertical,
                           'Horizontal': Axis.horizontal,
                         },
@@ -99,16 +101,15 @@ class _ThemePageState extends State<ThemePage> {
                           _updateTheme(_theme.copyWith(color: color));
                         },
                       ),
-                      SizedBox(height: 10.0),
+                      const SizedBox(height: 10.0),
                       Row(
                         children: [
-                          Text('Node item overlap'),
-                          SizedBox(width: 12.0),
+                          const Text('Node item overlap'),
+                          const SizedBox(width: 12.0),
                           Checkbox(
                             value: _theme.nodeItemOverlap,
                             onChanged: (overlap) {
-                              _updateTheme(
-                                  _theme.copyWith(nodeItemOverlap: overlap));
+                              _updateTheme(_theme.copyWith(nodeItemOverlap: overlap));
                             },
                           ),
                         ],
@@ -117,16 +118,14 @@ class _ThemePageState extends State<ThemePage> {
                         title: 'Node Position',
                         value: _theme.nodePosition,
                         onChanged: (nodePosition) {
-                          _updateTheme(
-                              _theme.copyWith(nodePosition: nodePosition));
+                          _updateTheme(_theme.copyWith(nodePosition: nodePosition));
                         },
                       ),
                       _ThemeSlider(
                         title: 'Indicator Position',
                         value: _theme.indicatorPosition,
                         onChanged: (indicatorPosition) {
-                          _updateTheme(_theme.copyWith(
-                              indicatorPosition: indicatorPosition));
+                          _updateTheme(_theme.copyWith(indicatorPosition: indicatorPosition));
                         },
                       ),
                     ],
@@ -135,7 +134,7 @@ class _ThemePageState extends State<ThemePage> {
               ),
               Card(
                 child: Container(
-                  padding: EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: [
                       Text(
@@ -149,21 +148,19 @@ class _ThemePageState extends State<ThemePage> {
                         onChanged: (color) {
                           _updateTheme(
                             _theme.copyWith(
-                              indicatorTheme:
-                                  _theme.indicatorTheme.copyWith(color: color),
+                              indicatorTheme: _theme.indicatorTheme.copyWith(color: color),
                             ),
                           );
                         },
                       ),
-                      SizedBox(height: 10.0),
+                      const SizedBox(height: 10.0),
                       _ThemeSlider(
                         title: 'Position',
                         value: _theme.indicatorTheme.position ?? 0,
                         onChanged: (position) {
                           _updateTheme(
                             _theme.copyWith(
-                              indicatorTheme: _theme.indicatorTheme
-                                  .copyWith(position: position),
+                              indicatorTheme: _theme.indicatorTheme.copyWith(position: position),
                             ),
                           );
                         },
@@ -175,8 +172,7 @@ class _ThemePageState extends State<ThemePage> {
                         onChanged: (size) {
                           _updateTheme(
                             _theme.copyWith(
-                              indicatorTheme:
-                                  _theme.indicatorTheme.copyWith(size: size),
+                              indicatorTheme: _theme.indicatorTheme.copyWith(size: size),
                             ),
                           );
                         },
@@ -187,7 +183,7 @@ class _ThemePageState extends State<ThemePage> {
               ),
               Card(
                 child: Container(
-                  padding: EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: [
                       Text(
@@ -201,13 +197,12 @@ class _ThemePageState extends State<ThemePage> {
                         onChanged: (color) {
                           _updateTheme(
                             _theme.copyWith(
-                              connectorTheme:
-                                  _theme.connectorTheme.copyWith(color: color),
+                              connectorTheme: _theme.connectorTheme.copyWith(color: color),
                             ),
                           );
                         },
                       ),
-                      SizedBox(height: 10.0),
+                      const SizedBox(height: 10.0),
                       _ThemeSlider(
                         title: 'Space',
                         value: _theme.connectorTheme.space ?? 0,
@@ -215,8 +210,7 @@ class _ThemePageState extends State<ThemePage> {
                         onChanged: (space) {
                           _updateTheme(
                             _theme.copyWith(
-                              connectorTheme:
-                                  _theme.connectorTheme.copyWith(space: space),
+                              connectorTheme: _theme.connectorTheme.copyWith(space: space),
                             ),
                           );
                         },
@@ -228,8 +222,7 @@ class _ThemePageState extends State<ThemePage> {
                         onChanged: (indent) {
                           _updateTheme(
                             _theme.copyWith(
-                              connectorTheme: _theme.connectorTheme
-                                  .copyWith(indent: indent),
+                              connectorTheme: _theme.connectorTheme.copyWith(indent: indent),
                             ),
                           );
                         },
@@ -241,8 +234,7 @@ class _ThemePageState extends State<ThemePage> {
                         onChanged: (thickness) {
                           _updateTheme(
                             _theme.copyWith(
-                              connectorTheme: _theme.connectorTheme
-                                  .copyWith(thickness: thickness),
+                              connectorTheme: _theme.connectorTheme.copyWith(thickness: thickness),
                             ),
                           );
                         },
@@ -257,7 +249,7 @@ class _ThemePageState extends State<ThemePage> {
             elevation: 3,
             margin: EdgeInsets.zero,
             child: Container(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: TimelineTheme(
                 data: _theme,
                 child: Column(
@@ -267,7 +259,7 @@ class _ThemePageState extends State<ThemePage> {
                       mainAxisExtent: 100,
                       crossAxisExtent: 100,
                       oppositeContents: Container(color: Colors.amber),
-                      node: TimelineNode(
+                      node: const TimelineNode(
                         startConnector: SolidLineConnector(),
                         endConnector: SolidLineConnector(),
                         indicator: OutlinedDotIndicator(),
@@ -304,7 +296,7 @@ class _ThemeDropdown<T> extends StatelessWidget {
     return Row(
       children: [
         Text(title),
-        SizedBox(width: 10.0),
+        const SizedBox(width: 10.0),
         DropdownButton(
           items: items.entries.map((entry) {
             return DropdownMenuItem(
@@ -336,7 +328,7 @@ class _ThemeSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var label;
+    String label;
     if (value == null) {
       label = '';
     } else if (value! > 1) {
@@ -348,7 +340,7 @@ class _ThemeSlider extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(title),
-        SizedBox(width: 10.0),
+        const SizedBox(width: 10.0),
         Slider(
           label: label,
           max: max,

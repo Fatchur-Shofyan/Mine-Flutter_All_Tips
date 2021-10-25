@@ -25,8 +25,7 @@ class NavigationCard extends StatelessWidget with NavigateMixin {
   const NavigationCard({
     Key? key,
     this.margin,
-    this.borderRadius =
-        const BorderRadius.all(Radius.circular(kNavigationCardRadius)),
+    this.borderRadius = const BorderRadius.all(Radius.circular(kNavigationCardRadius)),
     this.navigationBuilder,
     required this.child,
   }) : super(key: key);
@@ -34,6 +33,7 @@ class NavigationCard extends StatelessWidget with NavigateMixin {
   final EdgeInsetsGeometry? margin;
   final BorderRadius? borderRadius;
   final Widget child;
+  @override
   final NavigateWidgetBuilder? navigationBuilder;
 
   @override
@@ -41,9 +41,7 @@ class NavigationCard extends StatelessWidget with NavigateMixin {
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       margin: margin,
-      shape: borderRadius != null
-          ? RoundedRectangleBorder(borderRadius: borderRadius!)
-          : null,
+      shape: borderRadius != null ? RoundedRectangleBorder(borderRadius: borderRadius!) : null,
       child: InkWell(
         borderRadius: borderRadius,
         onTap: () => navigate(context),
@@ -57,7 +55,7 @@ class TitleAppBar extends StatelessWidget with PreferredSizeWidget {
   TitleAppBar(
     this.title, {
     Key? key,
-  })  : preferredSize = Size.fromHeight(kToolbarHeight),
+  })  : preferredSize = const Size.fromHeight(kToolbarHeight),
         super(key: key);
 
   @override

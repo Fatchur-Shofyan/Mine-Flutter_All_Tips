@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import 'package:flutter/material.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:learn/calendar/basic.dart';
 import 'package:learn/calendar/complex.dart';
@@ -33,7 +32,7 @@ class _StartPageState extends State<MyCalendar> {
               child: const Text('Basics'),
               onPressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => TableBasicsExample()),
+                MaterialPageRoute(builder: (_) => const TableBasicsExample()),
               ),
             ),
             const SizedBox(height: 12.0),
@@ -41,7 +40,7 @@ class _StartPageState extends State<MyCalendar> {
               child: const Text('Range Selection'),
               onPressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => TableRangeExample()),
+                MaterialPageRoute(builder: (_) => const TableRangeExample()),
               ),
             ),
             const SizedBox(height: 12.0),
@@ -49,7 +48,7 @@ class _StartPageState extends State<MyCalendar> {
               child: const Text('Events'),
               onPressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => TableEventsExample()),
+                MaterialPageRoute(builder: (_) => const TableEventsExample()),
               ),
             ),
             const SizedBox(height: 12.0),
@@ -57,7 +56,7 @@ class _StartPageState extends State<MyCalendar> {
               child: const Text('Multiple Selection'),
               onPressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => TableMultiExample()),
+                MaterialPageRoute(builder: (_) => const TableMultiExample()),
               ),
             ),
             const SizedBox(height: 12.0),
@@ -65,7 +64,7 @@ class _StartPageState extends State<MyCalendar> {
               child: const Text('Complex'),
               onPressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => TableComplexExample()),
+                MaterialPageRoute(builder: (_) => const TableComplexExample()),
               ),
             ),
             const SizedBox(height: 20.0),

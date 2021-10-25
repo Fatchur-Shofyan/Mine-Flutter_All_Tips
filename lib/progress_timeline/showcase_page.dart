@@ -9,6 +9,8 @@ import 'showcase/timeline_status.dart';
 import 'widget.dart';
 
 class ShowcasePage extends StatelessWidget {
+  const ShowcasePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,27 +23,27 @@ class ShowcasePage extends StatelessWidget {
               title: 'Timeline Status',
               designer: 'Tridip Thrizu',
               url: 'https://dribbble.com/shots/5659998-Daily-UI-Component-4-Timeline-Status',
-              navigationBuilder: () => TimelineStatusPage(),
+              navigationBuilder: () => const TimelineStatusPage(),
             ),
             _ShowcaseCard(
               image: 'assets/images/package_delivery_tracking.png',
               title: 'Package Delivery Tracking',
               designer: 'Series Eight',
               url: 'https://dribbble.com/shots/1899993-Package-Delivery-Tracking/attachments/1899993-Package-Delivery-Tracking?mode=media',
-              navigationBuilder: () => PackageDeliveryTrackingPage(),
+              navigationBuilder: () => const PackageDeliveryTrackingPage(),
             ),
             _ShowcaseCard(
               image: 'assets/images/process_timeline.png',
               title: 'Process Timeline',
               designer: 'Eddie Lobanovskiy',
               url: 'https://dribbble.com/shots/5260798-Process',
-              navigationBuilder: () => ProcessTimelinePage(),
+              navigationBuilder: () => const ProcessTimelinePage(),
             ),
           ];
 
           if (constraints.maxWidth >= 760) {
             return SingleChildScrollView(
-              padding: EdgeInsets.all(40.0),
+              padding: const EdgeInsets.all(40.0),
               child: Center(
                 child: Wrap(
                   children: cards
@@ -54,7 +56,7 @@ class ShowcasePage extends StatelessWidget {
             );
           } else {
             return ListView(
-              padding: EdgeInsets.symmetric(vertical: 20.0),
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
               children: cards,
             );
           }
@@ -92,60 +94,56 @@ class _ShowcaseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return NavigationCard(
       navigationBuilder: () => _forceLightTheme(context, navigationBuilder()),
-      child: Container(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(
-              image,
-              width: MediaQuery.of(context).size.width,
-              fit: BoxFit.fitWidth,
-            ),
-            Container(
-              child: Column(
-                children: [
-                  SizedBox(height: 20.0),
-                  Text(title),
-                  Container(
-                    padding: EdgeInsets.all(12.0),
-                    alignment: Alignment.centerRight,
-                    child: InkWell(
-                      child: Container(
-                        padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              FontAwesomeIcons.dribbble,
-                              semanticLabel: 'Original',
-                              size: 10.0,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            image,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.fitWidth,
+          ),
+          Column(
+            children: [
+              const SizedBox(height: 20.0),
+              Text(title),
+              Container(
+                padding: const EdgeInsets.all(12.0),
+                alignment: Alignment.centerRight,
+                child: InkWell(
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.dribbble,
+                          semanticLabel: 'Original',
+                          size: 10.0,
+                          color: Colors.grey[600],
+                        ),
+                        const SizedBox(width: 6.0),
+                        Flexible(
+                          child: Text(
+                            'Designed by $designer',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 10.0,
                               color: Colors.grey[600],
                             ),
-                            SizedBox(width: 6.0),
-                            Flexible(
-                              child: Text(
-                                'Designed by $designer',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 10.0,
-                                  color: Colors.grey[600],
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                      onTap: () async {
-                        if (await canLaunch(url)) await launch(url);
-                      },
+                      ],
                     ),
                   ),
-                ],
+                  onTap: () async {
+                    if (await canLaunch(url)) await launch(url);
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
+        ],
       ),
     );
   }

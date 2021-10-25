@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io' show Platform;
 
 // import 'package:baseflow_plugin_template/baseflow_plugin_template.dart';
 import 'package:flutter/material.dart';
@@ -270,65 +269,6 @@ class _GeolocatorWidgetState extends State<GeolocatorWidget> {
         'No last known position available',
       );
     }
-  }
-
-  void _getLocationAccuracy() async {
-    final status = await _geolocatorPlatform.getLocationAccuracy();
-    _handleLocationAccuracyStatus(status);
-  }
-
-  void _requestTemporaryFullAccuracy() async {
-    final status = await _geolocatorPlatform.requestTemporaryFullAccuracy(
-      purposeKey: "TemporaryPreciseAccuracy",
-    );
-    _handleLocationAccuracyStatus(status);
-  }
-
-  void _handleLocationAccuracyStatus(LocationAccuracyStatus status) {
-    String locationAccuracyStatusValue;
-    if (status == LocationAccuracyStatus.precise) {
-      locationAccuracyStatusValue = 'Precise';
-    } else if (status == LocationAccuracyStatus.reduced) {
-      locationAccuracyStatusValue = 'Reduced';
-    } else {
-      locationAccuracyStatusValue = 'Unknown';
-    }
-    _updatePositionList(
-      _PositionItemType.log,
-      '$locationAccuracyStatusValue location accuracy granted.',
-    );
-  }
-
-  void _openAppSettings() async {
-    final opened = await _geolocatorPlatform.openAppSettings();
-    String displayValue;
-
-    if (opened) {
-      displayValue = 'Opened Application Settings.';
-    } else {
-      displayValue = 'Error opening Application Settings.';
-    }
-
-    _updatePositionList(
-      _PositionItemType.log,
-      displayValue,
-    );
-  }
-
-  void _openLocationSettings() async {
-    final opened = await _geolocatorPlatform.openLocationSettings();
-    String displayValue;
-
-    if (opened) {
-      displayValue = 'Opened Location Settings';
-    } else {
-      displayValue = 'Error opening Location Settings';
-    }
-
-    _updatePositionList(
-      _PositionItemType.log,
-      displayValue,
-    );
   }
 }
 

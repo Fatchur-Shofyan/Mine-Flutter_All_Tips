@@ -7,14 +7,15 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:learn/calendar/utils.dart';
 
 class TableRangeExample extends StatefulWidget {
+  const TableRangeExample({Key? key}) : super(key: key);
+
   @override
   _TableRangeExampleState createState() => _TableRangeExampleState();
 }
 
 class _TableRangeExampleState extends State<TableRangeExample> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
-  RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
-      .toggledOn; // Can be toggled on/off by longpressing a date
+  RangeSelectionMode _rangeSelectionMode = RangeSelectionMode.toggledOn; // Can be toggled on/off by longpressing a date
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   DateTime? _rangeStart;
@@ -24,7 +25,7 @@ class _TableRangeExampleState extends State<TableRangeExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TableCalendar - Range'),
+        title: const Text('TableCalendar - Range'),
       ),
       body: TableCalendar(
         firstDay: kFirstDay,

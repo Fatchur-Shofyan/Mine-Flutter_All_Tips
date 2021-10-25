@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:learn/main.dart';
 import 'package:timelines/timelines.dart';
 
 import 'component_page.dart';
@@ -25,19 +26,19 @@ class ProgressTimelinePage extends StatelessWidget {
         Widget child;
         switch (path) {
           case '/theme':
-            child = ThemePage();
+            child = const ThemePage();
             break;
           case '/timeline_status':
-            child = TimelineStatusPage();
+            child = const TimelineStatusPage();
             break;
           case '/package_delivery_tracking':
-            child = PackageDeliveryTrackingPage();
+            child = const PackageDeliveryTrackingPage();
             break;
           case '/process_timeline':
-            child = ProcessTimelinePage();
+            child = const ProcessTimelinePage();
             break;
           default:
-            child = ExamplePage();
+            child = const ExamplePage();
         }
 
         return MaterialPageRoute(builder: (context) => HomePage(child: child));
@@ -48,7 +49,7 @@ class ProgressTimelinePage extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  HomePage({
+  const HomePage({
     Key? key,
     required this.child,
   }) : super(key: key);
@@ -91,7 +92,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          if (kIsWeb) WebAlert()
+          if (kIsWeb) const WebAlert()
         ],
       ),
     );
@@ -99,9 +100,11 @@ class _HomePageState extends State<HomePage> {
 }
 
 class WebAlert extends StatelessWidget {
+  const WebAlert({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       height: 80.0,
       child: Material(
         child: Center(
@@ -116,34 +119,36 @@ class WebAlert extends StatelessWidget {
 }
 
 class ExamplePage extends StatelessWidget {
+  const ExamplePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return TimelineTheme(
       data: TimelineThemeData(
-        indicatorTheme: IndicatorThemeData(size: 15.0),
+        indicatorTheme: const IndicatorThemeData(size: 15.0),
       ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Timelines Example'),
+          title: const Text('Timelines Example'),
           leading: IconButton(
             icon: const Icon(Icons.chevron_left, size: 40),
-            onPressed: () => Navigator.of(context).pop(true),
+            onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const MyApp())),
           ),
         ),
         body: ListView(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           children: [
             _NavigationCard(
               name: 'Components',
-              navigationBuilder: () => ComponentPage(),
+              navigationBuilder: () => const ComponentPage(),
             ),
             _NavigationCard(
               name: 'Theme',
-              navigationBuilder: () => ThemePage(),
+              navigationBuilder: () => const ThemePage(),
             ),
             _NavigationCard(
               name: 'Showcase',
-              navigationBuilder: () => ShowcasePage(),
+              navigationBuilder: () => const ShowcasePage(),
             ),
           ],
         ),
@@ -166,7 +171,7 @@ class _NavigationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: NavigationCard(
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           horizontal: 20.0,
           vertical: 10.0,
         ),
@@ -179,7 +184,7 @@ class _NavigationCard extends StatelessWidget {
               Expanded(
                 child: Text(name),
               ),
-              Icon(Icons.chevron_right),
+              const Icon(Icons.chevron_right),
             ],
           ),
         ),

@@ -57,12 +57,10 @@ class _StartPageState extends State<Geolocaator> {
         _serviceStatusStreamSubscription?.cancel();
         _serviceStatusStreamSubscription = null;
       }).listen((serviceStatus) {
-        String serviceStatusValue;
         if (serviceStatus == ServiceStatus.enabled) {
           if (positionStreamStarted) {
             _toggleListening();
           }
-          serviceStatusValue = 'enabled';
         } else {
           if (_positionStreamSubscription != null) {
             setState(() {
@@ -70,7 +68,6 @@ class _StartPageState extends State<Geolocaator> {
               _positionStreamSubscription = null;
             });
           }
-          serviceStatusValue = 'disabled';
         }
       });
     }
@@ -93,13 +90,10 @@ class _StartPageState extends State<Geolocaator> {
         return;
       }
 
-      String statusDisplayValue;
       if (_positionStreamSubscription!.isPaused) {
         _positionStreamSubscription!.resume();
-        statusDisplayValue = 'resumed';
       } else {
         _positionStreamSubscription!.pause();
-        statusDisplayValue = 'paused';
       }
     });
   }

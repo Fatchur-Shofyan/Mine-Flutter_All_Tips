@@ -7,6 +7,8 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:learn/calendar/utils.dart';
 
 class TableEventsExample extends StatefulWidget {
+  const TableEventsExample({Key? key}) : super(key: key);
+
   @override
   _TableEventsExampleState createState() => _TableEventsExampleState();
 }
@@ -14,8 +16,7 @@ class TableEventsExample extends StatefulWidget {
 class _TableEventsExampleState extends State<TableEventsExample> {
   late final ValueNotifier<List<Event>> _selectedEvents;
   CalendarFormat _calendarFormat = CalendarFormat.month;
-  RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
-      .toggledOff; // Can be toggled on/off by longpressing a date
+  RangeSelectionMode _rangeSelectionMode = RangeSelectionMode.toggledOff; // Can be toggled on/off by longpressing a date
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   DateTime? _rangeStart;
@@ -86,7 +87,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TableCalendar - Events'),
+        title: const Text('TableCalendar - Events'),
       ),
       body: Column(
         children: [
@@ -101,7 +102,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
             rangeSelectionMode: _rangeSelectionMode,
             eventLoader: _getEventsForDay,
             startingDayOfWeek: StartingDayOfWeek.monday,
-            calendarStyle: CalendarStyle(
+            calendarStyle: const CalendarStyle(
               // Use `CalendarStyle` to customize the UI
               outsideDaysVisible: false,
             ),
@@ -136,7 +137,7 @@ class _TableEventsExampleState extends State<TableEventsExample> {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       child: ListTile(
-                        onTap: () => print('${value[index]}'),
+                        onTap: () => debugPrint('${value[index]}'),
                         title: Text('${value[index]}'),
                       ),
                     );

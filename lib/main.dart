@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:learn/Utils/Animation/fade.dart';
 import 'package:learn/animated_do/main.dart';
 import 'package:learn/calendar/main.dart';
 import 'package:learn/connectivity/main.dart';
-import 'package:learn/dialog/awesome_dialog.dart';
-import 'package:learn/dialog/material_dialog.dart';
+import 'package:learn/dialog/main.dart';
 import 'package:learn/flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:learn/list/main.dart';
 import 'package:learn/loading_indicator/main.dart';
 import 'package:learn/location/geolocator.dart';
-import 'package:learn/location/geolocator2.dart';
+import 'package:learn/models/menu.dart';
 import 'package:learn/progress_timeline/main.dart';
 import 'package:learn/shimmer/shimmer.dart';
 
@@ -24,142 +24,153 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate
-      ],
-      supportedLocales: const [
-        Locale('en', ''),
-        Locale('es', ''),
-      ],
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(primarySwatch: Colors.blue),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate
+        ],
+        supportedLocales: const [
+          Locale('en', ''),
+          Locale('es', ''),
+        ],
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text("Flutter Demo Home Page"),
+          ),
+          body: const MyHomePage(),
+        ));
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final ScrollController _scrollController = ScrollController();
+  // List<String> items = [];
+  bool loading = false, allLoaded = false;
+
+  List<dynamic> jobList = [];
+
+  int count = 0;
+
+  List menu = [
+    {"title": 'Dialog', "page": const MyDialog()},
+    {"title": 'Calendar', "page": const MyCalendar()},
+    {"title": 'Location', "page": const GeolocatorWidget()},
+    {"title": 'List', "page": const ListPage()},
+    {"title": 'Progress Timeline', "page": const ProgressTimelinePage()},
+    {"title": 'Shimmer', "page": const ShimmerPage()},
+    {"title": 'Animated Do', "page": const AnimtedDo()},
+    {"title": 'Connectivity', "page": const ConnectivityPage()},
+    {"title": 'Loading Indicator', "page": const LoadingIndicatorPage()},
+  ];
+  mockFetch() async {
+    if (allLoaded) return;
+    setState(() {
+      loading = true;
+    });
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    List<dynamic> newData = [];
+    // if (jobList.length <= 200) {
+    newData = menu.map((data) => Menu.fromJson(data)).toList();
+    if (newData.isNotEmpty) {
+      jobList.addAll(newData);
+    }
+    // }
+
+    setState(() {
+      loading = false;
+      allLoaded = newData.isEmpty;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    mockFetch();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            BuildButton(
-              text: 'Awesome Dialog',
-              onPressed: const DialogAwesomeDialog(),
+    return LayoutBuilder(builder: (context, constraints) {
+      if (jobList.isNotEmpty) {
+        return Stack(
+          children: [
+            GridView.builder(
+              controller: _scrollController,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 2,
+              ),
+              padding: const EdgeInsets.fromLTRB(20, 20, 0, 20),
+              itemCount: jobList.length,
+              itemBuilder: (context, index) {
+                return AnimationFade(
+                  begin: const Offset(0, -0.5),
+                  end: Offset.zero,
+                  duration: 1500,
+                  delay: ((1 + index) / jobList.length) / 2,
+                  // child: Text("sds"),
+                  child: jobComponent(menu: jobList[index]),
+                );
+              },
             ),
-            BuildButton(
-              text: 'Material Dialog',
-              onPressed: DialogMaterialDialog(),
-            ),
-            BuildButton(
-              text: 'Calendar',
-              onPressed: const MyCalendar(),
-            ),
-            BuildButton(
-              text: 'Location',
-              onPressed: const GeolocatorWidget(),
-            ),
-            BuildButton(
-              text: 'List',
-              onPressed: const ListPage(),
-            ),
-            BuildButton(
-              text: 'Progress Timeline',
-              onPressed: const ProgressTimelinePage(),
-            ),
-            BuildButton(
-              text: 'Shimmer',
-              onPressed: const ShimmerPage(),
-            ),
-            BuildButton(
-              text: 'Animated Do',
-              onPressed: const AnimtedDo(),
-            ),
-            BuildButton(
-              text: 'Connectivity',
-              onPressed: const ConnectivityPage(),
-            ),
-            BuildButton(
-              text: 'Loading Indicator',
-              onPressed: const LoadingIndicatorPage(),
-            )
+            if (loading)
+              Positioned(
+                left: 0,
+                bottom: 100,
+                child: SizedBox(
+                  width: constraints.maxWidth,
+                  height: 80,
+                  child: const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
+              )
           ],
+        );
+      } else {
+        return const Center(child: CircularProgressIndicator());
+      }
+    });
+  }
+
+  jobComponent({required Menu menu}) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => menu.page));
+      },
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.only(bottom: 15, right: 15),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.white, boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 0,
+            blurRadius: 2,
+            offset: const Offset(0, 1),
+          ),
+        ]),
+        child: Center(
+          child: Text(menu.title),
         ),
       ),
-    );
-  }
-}
-
-// ignore: must_be_immutable
-class BuildButton extends StatelessWidget {
-  // ignore: prefer_typing_uninitialized_variables
-  var onPressed;
-  final String text;
-  BuildButton({Key? key, required this.text, this.onPressed}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      child: Text(text, style: const TextStyle(color: Colors.white)),
-      style: TextButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-        backgroundColor: Colors.blue,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      ),
-      onPressed: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => onPressed));
-      },
     );
   }
 }
