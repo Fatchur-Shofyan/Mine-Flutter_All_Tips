@@ -1,0 +1,215 @@
+{
+    "Main": {
+        "Title": {
+            "ID": "Versi terbaru telah dirilis",
+            "US": "The latest version has been released"
+        },
+        "Desc": {
+            "ID": "Silakan unduh aplikasi versi terbaru, Klik tombol di bawah ini.",
+            "US": "Please download the latest version of the application, Click the button below."
+        },
+        "Button": {
+            "ID": "Unduh",
+            "US": "Download"
+        }
+    },
+    
+    "Menu": {
+        "Home": {
+            "ID": "Laman",
+            "US": "Home"
+        },
+        "Presence": {
+            "ID": "Kehadiran",
+            "US": "Presence"
+        },
+        "Scan": {
+            "ID": "Pindai",
+            "US": "Scan"
+        },
+        "Report": {
+            "ID": "Laporan",
+            "US": "Report"
+        },
+        "Profile": {
+            "ID": "Profil",
+            "US": "Profile"
+        }
+    },
+    
+    "pageHome": {
+        "goodMorning": 
+        {
+            "ID": "Selamat Pagi, ",
+            "US": "Good Morning, "
+        },
+        "goodAfternoon": 
+        {
+            "ID": "Selamat Siang, ",
+            "US": "Good Afternoon, "
+        },
+        "goodEvening": 
+        {
+            "ID": "Selamat sore, ",
+            "US": "Good evening, "
+        },
+        "goodMorningMessageOne": 
+        {
+            "ID": "semoga harimu menyenangkan",
+            "US": "have a nice day"
+        },
+        "goodAfternoonMessageOne": 
+        {
+            "ID": "jangan lupa makan siang",
+            "US": "don't forget to have lunch"
+        },
+        "goodEveningMessageOne": 
+        {
+            "ID": "apakah semuanya berjalan lancar hari ini?",
+            "US": "is everything going well today?"
+        },
+        "HappyWorking": 
+        {
+            "ID": "selamat bekerja",
+            "US": "happy working"
+        },
+        
+
+        "feelSickTitle": 
+        {
+            "ID": "Apakah Anda merasa sakit ?",
+            "US": "Are You feeling sick ?"
+        },
+        "feelSickDesc": 
+        {
+            "ID": "Jika Anda merasa sakit Anda dapat mengajukan cuti kerja, tekan tombol di bawah ini untuk melakukannya.",
+            "US": "If You feel sick you can apply for leave from work, You can click the button below."
+        },
+        "feelSickButton": 
+        {
+            "ID": "Ajukan Cuti",
+            "US": "Apply for absence"
+        }
+    },
+
+    "pageSalary": {
+        "devTitle": {
+            "ID": "Data gaji Anda belum dimasukan",
+            "US": "Data of You'r salary hasn't been entered"
+        },
+        "devDesc": {
+            "ID": "Sabar ya, tunggu hingga bagian finansial memasukan data gaji Anda.",
+            "US": "Be patient, wait until the financial department enters Your salary data."
+        }
+    },
+
+    "pageReport": {
+        "Report": 
+        {
+            "ID": "Laporan",
+            "US": "Report"
+        },
+        "devTitle": {
+            "ID": "Kita lagi nyiapin sesuatu",
+            "US": "We're preparing something"
+        },
+        "devDesc": {
+            "ID": "Sabar ya, ini semua biar kamu bisa menikmati berbagai layanan terbaik.",
+            "US": "All of this to make You can enjoy the best services from Us."
+        }
+    },
+
+    "pageProfile": {
+        "Profile": 
+        {
+            "ID": "Profil",
+            "US": "Profile"
+        },
+        "myQR": {
+            "ID": "Kode QR Saya",
+            "US": "My QR Code"
+        },
+        "Account": {
+            "ID": "Akun",
+            "US": "Account"
+        },
+        "changeProfile": {
+            "ID": "Ubah profil Saya",
+            "US": "Change My profile"
+        },
+        "changePass": {
+            "ID": "Ubah sandi Saya",
+            "US": "Change My password"
+        },
+        "changeLanguage": {
+            "ID": "Ubah bahasa",
+            "US": "Change language"
+        },
+        "About": {
+            "ID": "Tentang Kami",
+            "US": "About Us"
+        },
+        "Help": {
+            "ID": "Pusat Bantuan",
+            "US": "Help Center"
+        },
+        "Logout": {
+            "ID": "Keluar",
+            "US": "Logout"
+        }
+    },
+
+    "pageCalculation": {
+        "Title": 
+        {
+            "ID": "Pemasaran",
+            "US": "Marketing"
+        },
+        "Reset": 
+        {
+            "ID": "Hapus",
+            "US": "Reset"
+        },
+        "Month": 
+        {
+            "ID": "Bulan",
+            "US": "Month"
+        },
+        "capitalPrice": {
+            "ID": "Harga Modal",
+            "US": "Capital Price"
+        },
+        "marketingFee": {
+            "ID": "Biaya Pemasaran",
+            "US": "Marketing Fee"
+        },
+        "profit": {
+            "ID": "Keuntungan",
+            "US": "Profit"
+        },
+        "risk": {
+            "ID": "Resiko",
+            "US": "Risk"
+        },
+        "interestYearly": {
+            "ID": "Bunga Tahunan",
+            "US": "Interest Yearly"
+        },
+        "monthly": {
+            "ID": "Bulanan",
+            "US": "Monthly"
+        },
+        "sellingPrice": {
+            "ID": "Harga Jual",
+            "US": "Selling Price"
+        },
+        "Exchange": {
+            "ID": "Nilai Tukar Dolar Hari Ini",
+            "US": "Dollar Exchange Rate Today : "
+        },
+        "sellingPriceIn": {
+            "ID": "Harga Jual pada IDR : ",
+            "US": "Selling Price in IDR : "
+        }
+    }
+}
