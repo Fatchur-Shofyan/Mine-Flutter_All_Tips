@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:learn/animated_do/main.dart';
 import 'package:learn/calendar/main.dart';
+import 'package:learn/connectivity/main.dart';
 import 'package:learn/dialog/awesome_dialog.dart';
 import 'package:learn/dialog/material_dialog.dart';
 import 'package:learn/flutter_gen/gen_l10n/app_localizations.dart';
@@ -123,6 +124,10 @@ class _MyHomePageState extends State<MyHomePage> {
             BuildButton(
               text: 'Animated Do',
               onPressed: const AnimtedDo(),
+            ),
+            BuildButton(
+              text: 'Connectivity',
+              onPressed: const ConnectivityPage(),
             )
           ],
         ),
@@ -142,10 +147,10 @@ class BuildButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       child: Text(text, style: const TextStyle(color: Colors.white)),
-      style: ButtonStyle(
-        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0)),
-        backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-        shape: MaterialStateProperty.all<OutlinedBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))),
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+        backgroundColor: Colors.blue,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       ),
       onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => onPressed));
